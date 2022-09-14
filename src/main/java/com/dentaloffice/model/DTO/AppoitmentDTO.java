@@ -1,42 +1,30 @@
-package com.dentaloffice.model;
+package com.dentaloffice.model.DTO;
 
-import com.dentaloffice.model.DTO.CreateAppointmentDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.dentaloffice.model.AppointmentType;
+import com.dentaloffice.model.Appoitment;
+import com.dentaloffice.model.AppoitmentDuration;
+import org.springframework.cglib.core.internal.LoadingCache;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-public class Appoitment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+public class AppoitmentDTO {
+
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne()
-    @JoinColumn(name = "patient_id", nullable = false)
-    private Patient patient;
+    private PatientDTO patient;
 
-    @Column(nullable = false)
     private LocalDateTime startDateTime;
 
-    @Column(nullable = false)
     private AppoitmentDuration duration;
 
     private AppointmentType type;
 
-    public Appoitment() {
-    }
-
-    public Appoitment(Long id) {
-        this.id = id;
-    }
-
-    public Appoitment(CreateAppointmentDTO appointment, Patient patient) {
-        this.patient = patient;
+    public AppoitmentDTO(Appoitment appointment) {
+        this.id = appointment.getId();
+        this.patient = new PatientDTO(appointment.getPatient());
         this.startDateTime = appointment.getStartDateTime();
         this.duration = appointment.getDuration();
+        this.type = appointment.getType();
     }
 
     public Long getId() {
@@ -47,11 +35,11 @@ public class Appoitment {
         this.id = id;
     }
 
-    public Patient getPatient() {
+    public PatientDTO getPatient() {
         return patient;
     }
 
-    public void setPatient(Patient patient) {
+    public void setPatient(PatientDTO patient) {
         this.patient = patient;
     }
 
