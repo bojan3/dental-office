@@ -1,8 +1,8 @@
 package com.dentaloffice.service.impl;
 
 import com.dentaloffice.exception.NotFoundException;
-import com.dentaloffice.model.Role;
-import com.dentaloffice.model.User;
+import com.dentaloffice.controller.model.Role;
+import com.dentaloffice.controller.model.User;
 import com.dentaloffice.repository.UserRepository;
 import com.dentaloffice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

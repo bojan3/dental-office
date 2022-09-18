@@ -1,8 +1,8 @@
 package com.dentaloffice.service.impl;
 
 import com.dentaloffice.exception.NotFoundException;
-import com.dentaloffice.model.Appoitment;
-import com.dentaloffice.model.DTO.AppoitmentDTO;
+import com.dentaloffice.controller.model.Appoitment;
+import com.dentaloffice.controller.model.DTO.AppoitmentDTO;
 import com.dentaloffice.repository.AppoitmentRepository;
 import com.dentaloffice.repository.PatientRepository;
 import com.dentaloffice.service.DentistService;

@@ -3,7 +3,7 @@ package com.dentaloffice.service.impl;
 import com.dentaloffice.emailcontext.CancelAppointmentMail;
 import com.dentaloffice.emailcontext.CreateAppointmentMail;
 import com.dentaloffice.emailcontext.EmailContext;
-import com.dentaloffice.model.Appoitment;
+import com.dentaloffice.controller.model.Appoitment;
 import com.dentaloffice.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;

@@ -1,6 +1,6 @@
 package com.dentaloffice.repository;
 
-import com.dentaloffice.model.Patient;
+import com.dentaloffice.controller.model.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

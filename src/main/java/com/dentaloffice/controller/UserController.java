@@ -1,6 +1,6 @@
 package com.dentaloffice.controller;
 
-import com.dentaloffice.model.User;
+import com.dentaloffice.controller.model.User;
 import com.dentaloffice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

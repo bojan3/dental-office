@@ -1,6 +1,6 @@
-package com.dentaloffice.model.DTO;
+package com.dentaloffice.controller.model.DTO;
 
-import com.dentaloffice.model.Patient;
+import com.dentaloffice.controller.model.Patient;
 
 public class PatientDTO {
 

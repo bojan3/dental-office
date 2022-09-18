@@ -1,7 +1,7 @@
-package com.dentaloffice.model.DTO;
+package com.dentaloffice.controller.model.DTO;
 
-import com.dentaloffice.model.AppointmentType;
-import com.dentaloffice.model.AppoitmentDuration;
+import com.dentaloffice.controller.model.AppointmentType;
+import com.dentaloffice.controller.model.AppoitmentDuration;
 
 import java.time.LocalDateTime;
 

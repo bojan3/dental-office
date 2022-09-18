@@ -1,6 +1,6 @@
-package com.dentaloffice.model;
+package com.dentaloffice.controller.model;
 
-import com.dentaloffice.model.DTO.CreateAppointmentDTO;
+import com.dentaloffice.controller.model.DTO.CreateAppointmentDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -89,5 +89,12 @@ public class Appoitment {
 
     public void setCanceled(Boolean canceled) {
         this.canceled = canceled;
+    }
+
+    public boolean canPatientCancel() {
+        LocalDateTime now = LocalDateTime.now().plusDays(1);
+        System.out.println(this.startDateTime);
+        System.out.println(now);
+        return now.isBefore(this.startDateTime);
     }
 }

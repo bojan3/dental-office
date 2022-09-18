@@ -1,7 +1,6 @@
 package com.dentaloffice.service;
 
-import com.dentaloffice.emailcontext.EmailContext;
-import com.dentaloffice.model.Appoitment;
+import com.dentaloffice.controller.model.Appoitment;
 
 import javax.mail.MessagingException;
 

@@ -1,4 +1,4 @@
-package com.dentaloffice.model;
+package com.dentaloffice.controller.model;
 
 public enum AppoitmentDuration {
     LONG(60),

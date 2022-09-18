@@ -1,8 +1,7 @@
 package com.dentaloffice.service;
 
-import com.dentaloffice.exception.NotFoundException;
-import com.dentaloffice.model.DTO.AppoitmentDTO;
-import com.dentaloffice.model.DTO.CreateAppointmentDTO;
+import com.dentaloffice.controller.model.DTO.AppoitmentDTO;
+import com.dentaloffice.controller.model.DTO.CreateAppointmentDTO;
 
 import javax.mail.MessagingException;
 

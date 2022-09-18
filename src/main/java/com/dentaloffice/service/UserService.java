@@ -1,6 +1,6 @@
 package com.dentaloffice.service;
 
-import com.dentaloffice.model.User;
+import com.dentaloffice.controller.model.User;
 
 public interface UserService {
 

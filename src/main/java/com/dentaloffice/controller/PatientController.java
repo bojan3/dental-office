@@ -1,7 +1,7 @@
 package com.dentaloffice.controller;
 
 import com.dentaloffice.controller.model.DTO.AppoitmentDTO;
-import com.dentaloffice.service.DentistService;
+import com.dentaloffice.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,19 +12,19 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(value = "/api/dentist", produces = MediaType.APPLICATION_JSON_VALUE)
-public class DentistController {
+@RequestMapping(value = "/api/patient", produces = MediaType.APPLICATION_JSON_VALUE)
+public class PatientController {
 
-    private DentistService dentistService;
+    private PatientService patientService;
 
     @Autowired
-    public DentistController(DentistService dentistService) {
-        this.dentistService = dentistService;
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
     }
 
-    @GetMapping(value = "/appointments")
-    public ResponseEntity<List<AppoitmentDTO>> getAppoitments(){
-        List<AppoitmentDTO> appoitments = this.dentistService.getAppoitments();
+    @GetMapping(value = "/appointments/{phoneNumber}")
+    public ResponseEntity<List<AppoitmentDTO>> getAppoitments(@PathVariable String phoneNumber) {
+        List<AppoitmentDTO> appoitments = this.patientService.getAppoitments(phoneNumber);
         return new ResponseEntity<List<AppoitmentDTO>>(appoitments, HttpStatus.OK);
     }
 
@@ -32,7 +32,7 @@ public class DentistController {
     public ResponseEntity<Boolean> deleteAppointment(@PathVariable Long id) {
         Boolean response = false;
         try {
-            response = this.dentistService.cancelAppointment(id);
+            response = this.patientService.cancelAppointment(id);
         }catch (Exception e) {
             return new ResponseEntity<Boolean>(response, HttpStatus.BAD_REQUEST);
         }
