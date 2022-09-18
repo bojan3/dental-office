@@ -1,16 +1,16 @@
 package com.dentaloffice.service.impl;
 
+import com.dentaloffice.exception.NotFoundException;
 import com.dentaloffice.model.Appoitment;
 import com.dentaloffice.model.DTO.AppoitmentDTO;
-import com.dentaloffice.model.Patient;
-import com.dentaloffice.model.Role;
-import com.dentaloffice.model.User;
 import com.dentaloffice.repository.AppoitmentRepository;
 import com.dentaloffice.repository.PatientRepository;
 import com.dentaloffice.service.DentistService;
+import com.dentaloffice.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +20,7 @@ public class DentistServiceImpl implements DentistService {
 
     private AppoitmentRepository appoitmentRepository;
     private PatientRepository patientRepository;
+    private EmailService emailService;
 
     @Autowired
     public DentistServiceImpl(AppoitmentRepository appoitmentRepository, PatientRepository patientRepository) {
@@ -29,7 +30,7 @@ public class DentistServiceImpl implements DentistService {
 
     @Override
     public List<AppoitmentDTO> getAppoitments() {
-        return toDTOs(appoitmentRepository.findAll());
+        return toDTOs(appoitmentRepository.findAllNotCanceled());
     }
 
     private List<AppoitmentDTO> toDTOs(List<Appoitment> appoitments) {
@@ -43,4 +44,16 @@ public class DentistServiceImpl implements DentistService {
 
         return appoitmentDTOs;
     }
+
+    public Boolean cancelAppointment(Long appointmentId) throws NotFoundException, MessagingException {
+        Appoitment appointment = this.appoitmentRepository.findById(appointmentId).orElseThrow(() -> new NotFoundException());
+        appointment.setCanceled(true);
+        this.appoitmentRepository.save(appointment);
+
+        if (appointment.getPatient().getUser().getEmail() != null)
+            this.emailService.sendAppointmentCanceledNotification(appointment);
+
+        return true;
+    }
+
 }

@@ -14,7 +14,7 @@ public class Patient {
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private User user;
 
-    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<Appoitment> appoitments;
 
     public Patient() {

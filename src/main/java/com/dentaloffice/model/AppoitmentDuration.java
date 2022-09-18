@@ -10,7 +10,7 @@ public enum AppoitmentDuration {
         this.duration = duration;
     }
 
-    public int getDuration() {
+    public int toInt() {
         return duration;
     }
 }

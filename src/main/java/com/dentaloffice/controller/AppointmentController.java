@@ -36,14 +36,24 @@ public class AppointmentController {
         return new ResponseEntity<Boolean>(response, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<Boolean> deleteAppointment(@PathVariable Long id) {
-        Boolean response = false;
-        try {
-             response = this.appointmentService.cancelAppointment(id);
-        }catch (Exception e) {
-            return new ResponseEntity<Boolean>(response, HttpStatus.BAD_REQUEST);
+//    @DeleteMapping(value = "/delete/{id}")
+//    public ResponseEntity<Boolean> deleteAppointment(@PathVariable Long id) {
+//        Boolean response = false;
+//        try {
+//             response = this.appointmentService.cancelAppointment(id);
+//        }catch (Exception e) {
+//            return new ResponseEntity<Boolean>(response, HttpStatus.BAD_REQUEST);
+//        }
+//        return new ResponseEntity<Boolean>(response, HttpStatus.OK);
+//    }
+
+    @GetMapping(value = "/get/{id}")
+    public ResponseEntity<AppoitmentDTO> getAppointment(@PathVariable Long id) {
+        AppoitmentDTO appointment = this.appointmentService.getAppointment(id);
+        if (appointment == null) {
+            return new ResponseEntity<AppoitmentDTO>(appointment, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<Boolean>(response, HttpStatus.OK);
+        return new ResponseEntity<AppoitmentDTO>(appointment, HttpStatus.OK);
     }
+
 }

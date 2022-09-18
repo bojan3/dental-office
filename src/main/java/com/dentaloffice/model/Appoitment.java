@@ -26,6 +26,8 @@ public class Appoitment {
 
     private AppointmentType type;
 
+    private Boolean canceled;
+
     public Appoitment() {
     }
 
@@ -37,6 +39,8 @@ public class Appoitment {
         this.patient = patient;
         this.startDateTime = appointment.getStartDateTime();
         this.duration = appointment.getDuration();
+        this.type = appointment.getType();
+        this.canceled = false;
     }
 
     public Long getId() {
@@ -77,5 +81,13 @@ public class Appoitment {
 
     public void setType(AppointmentType type) {
         this.type = type;
+    }
+
+    public Boolean getCanceled() {
+        return canceled;
+    }
+
+    public void setCanceled(Boolean canceled) {
+        this.canceled = canceled;
     }
 }

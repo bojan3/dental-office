@@ -3,4 +3,10 @@ insert into user (first_name, last_name, phone_number, role) values ("James", "P
 
 insert into patient (user_id) values (1);
 
---insert into appoitment (patient_id, start_date_time, duration ) values (1, "2022-09-14T08:57:36.977Z", 0);
+insert into appoitment (duration, start_date_time, type, patient_id, canceled) values (0, '2022-9-18 11:00:00', 0 , 1, false);
+insert into appoitment (duration, start_date_time, type, patient_id, canceled) values (0, '2022-9-18 11:30:00', 0 , 1, false);
+insert into appoitment (duration, start_date_time, type, patient_id, canceled) values (0, '2022-9-18 12:00:00', 0 , 1, false);
+
+insert into appoitment (duration, start_date_time, type, patient_id, canceled) values (1, '2022-9-19 11:00:00', 0 , 1, false);
+insert into appoitment (duration, start_date_time, type, patient_id, canceled) values (1, '2022-9-19 12:00:00', 0 , 1, false);
+insert into appoitment (duration, start_date_time, type, patient_id, canceled) values (1, '2022-9-19 13:00:00', 0 , 1, false);

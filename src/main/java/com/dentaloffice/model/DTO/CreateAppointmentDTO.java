@@ -1,5 +1,6 @@
 package com.dentaloffice.model.DTO;
 
+import com.dentaloffice.model.AppointmentType;
 import com.dentaloffice.model.AppoitmentDuration;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,8 @@ public class CreateAppointmentDTO {
     private LocalDateTime startDateTime;
 
     private AppoitmentDuration duration;
+
+    private AppointmentType type;
 
     public String getPatientPhoneNumber() {
         return patientPhoneNumber;
@@ -36,12 +39,12 @@ public class CreateAppointmentDTO {
         this.duration = duration;
     }
 
-    @Override
-    public String toString() {
-        return "CreateAppointmentDTO{" +
-                "patientPhoneNumber='" + patientPhoneNumber + '\'' +
-                ", startDateTime=" + startDateTime +
-                ", duration=" + duration +
-                '}';
+    public AppointmentType getType() {
+        return type;
     }
+
+    public void setType(AppointmentType type) {
+        this.type = type;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.dentaloffice.service.impl;
 
 import com.dentaloffice.exception.NotFoundException;
 import com.dentaloffice.model.Appoitment;
+import com.dentaloffice.model.DTO.AppoitmentDTO;
 import com.dentaloffice.model.DTO.CreateAppointmentDTO;
 import com.dentaloffice.model.Patient;
 import com.dentaloffice.repository.AppoitmentRepository;
@@ -9,9 +10,6 @@ import com.dentaloffice.repository.PatientRepository;
 import com.dentaloffice.service.AppointmentService;
 import com.dentaloffice.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.http.HttpStatus;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -21,7 +19,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     private AppoitmentRepository appoitmentRepository;
     private PatientRepository patientRepository;
-
     private EmailService emailService;
 
     @Autowired
@@ -49,14 +46,23 @@ public class AppointmentServiceImpl implements AppointmentService {
         return response;
     }
 
-    public Boolean cancelAppointment(Long appointmentId) throws NotFoundException, MessagingException {
-        Appoitment appointment = this.appoitmentRepository.findById(appointmentId).orElseThrow(() -> new NotFoundException());
-        this.appoitmentRepository.delete(appointment);
+//    public Boolean cancelAppointment(Long appointmentId) throws NotFoundException, MessagingException {
+//        Appoitment appointment = this.appoitmentRepository.findById(appointmentId).orElseThrow(() -> new NotFoundException());
+//        appointment.setCanceled(true);
+//        this.appoitmentRepository.save(appointment);
+//
+//        if (appointment.getPatient().getUser().getEmail() != null)
+//            this.emailService.sendAppointmentCanceledNotification(appointment);
+//
+//        return true;
+//    }
 
-        if (appointment.getPatient().getUser().getEmail() != null)
-            this.emailService.sendAppointmentCanceledNotification(appointment);
-
-        return true;
+    @Override
+    public AppoitmentDTO getAppointment(Long id) {
+        Appoitment appointment = this.appoitmentRepository.findById(id).orElse(null);
+        if (appointment == null)
+            throw new NotFoundException();
+        return new AppoitmentDTO(appointment);
     }
 
 }

@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
@@ -32,6 +29,17 @@ public class DentistController {
     public ResponseEntity<List<AppoitmentDTO>> getAppoitments(){
         List<AppoitmentDTO> appoitments = this.dentistService.getAppoitments();
         return new ResponseEntity<List<AppoitmentDTO>>(appoitments, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "appointment/cancel/{id}")
+    public ResponseEntity<Boolean> deleteAppointment(@PathVariable Long id) {
+        Boolean response = false;
+        try {
+            response = this.dentistService.cancelAppointment(id);
+        }catch (Exception e) {
+            return new ResponseEntity<Boolean>(response, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Boolean>(response, HttpStatus.OK);
     }
 
 }
